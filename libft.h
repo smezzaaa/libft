@@ -6,7 +6,7 @@
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 10:58:44 by smeza-ro          #+#    #+#             */
-/*   Updated: 2025/12/04 12:49:50 by smeza-ro         ###   ########.fr       */
+/*   Updated: 2025/12/04 15:59:31 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 # include <limits.h>
 # include <string.h>
 # include <bsd/string.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <errno.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <errno.h>
 
 int		ft_isalpha(int c);
 int		ft_isalnum(int c);
