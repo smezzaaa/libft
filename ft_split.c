@@ -6,7 +6,7 @@
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 16:22:02 by smeza-ro          #+#    #+#             */
-/*   Updated: 2025/12/07 18:34:07 by smeza-ro         ###   ########.fr       */
+/*   Updated: 2025/12/09 19:10:44 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,46 +39,78 @@ static size_t	str_counter(char const *s, char c)
 	{
 		while (s[i] == c)
 			i++;
-		count++;
+		if (!(s[i] == 0))
+			count++;
 		while (s[i] != c && s[i])
 			i++;
 	}
 	return (count);
 }
 
+static char	*free_word(char	*s)
+{
+	if (!s)
+	{
+		free(s);
+		return (NULL);
+	}
+	return (s);
+}
+
+static char	*ft_cpy(char *dst, const char *str, size_t len, char c)
+{
+	static int	i;
+	size_t		j;
+
+	j = 0;
+	while (str[i])
+	{
+		if (str[i] != c)
+		{
+			while (j < len)
+			{
+				dst[j] = str[i];
+				j++;
+				i++;
+			}
+			return (dst);
+		}
+		else
+		{
+			while (str[i] == c)
+				i++;
+		}
+	}
+	return (dst);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	size_t		i;
-	int			k;
-	size_t		j;
 	char		**arr;
 	size_t		wrd_len;
 
-	i = -1;
-	k = 0;
+	i = 0;
 	if (s == NULL)
 		return (NULL);
 	arr = (char **)malloc(sizeof(char *) * (str_counter(s, c)));
 	if (arr == NULL)
 		return (NULL);
-	while ((++i) < str_counter(s, c))
+	while (i < str_counter(s, c))
 	{
 		wrd_len = tok_len(s, c);
-		arr[i] = (char *)malloc(tok_len(s, c) * sizeof(char));
-		if (arr[i] == NULL)
+		arr[i] = (char *)malloc(wrd_len * sizeof(char));
+		arr[i] = ft_cpy(arr[i], s, wrd_len, c);
+		if (free_word (arr[i]) == NULL)
 			return (NULL);
-		j = -1;
-		while ((++j) < wrd_len)
-			arr[i][j] = s[j + k];
-		while (s[j + (++k)] == c)
-			k = (j + k);
+		i++;
 	}
 	return (arr);
 }
 /* 
 int main ()
 {
-	char str[] = "bip--boppp";
+	char str[] = "---bip--------";
 	char del = '-';
 	char **tokens = ft_split(str, del);
 	int i = 0;
@@ -86,6 +118,18 @@ int main ()
 	{
 		printf("%s\n", tokens[i]);
 		i++;
+	}
+	int a = 0;
+	int j = 0;
+	while (tokens[a])
+	{
+		while (tokens[a][j])
+		{
+			free (tokens[j]);
+			j++;
+		}
+		j = 0;
+		a++;
 	}
 	free (tokens);
 } */
