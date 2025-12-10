@@ -6,7 +6,7 @@
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 21:04:50 by smeza-ro          #+#    #+#             */
-/*   Updated: 2025/12/10 21:48:46 by smeza-ro         ###   ########.fr       */
+/*   Updated: 2025/12/10 21:59:30 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 char	f(unsigned int i, char c)
 {
-	char	x;
-	
-	x = c + 32;
-	return (x);
+	(void)	i;
+	return (c - 32);
 }
 
 char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
