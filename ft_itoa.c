@@ -6,11 +6,32 @@
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:40:40 by smeza-ro          #+#    #+#             */
-/*   Updated: 2025/12/09 20:21:55 by smeza-ro         ###   ########.fr       */
+/*   Updated: 2025/12/10 21:02:23 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static int	ft_units(int res, int div, int n)
+{
+	int unit;
+
+	unit = 0;
+	if (n < 0)
+		unit = -res + div * 10;
+	else
+		unit = res - div * 10;
+	return (unit);
+}
+static char	*control_set(char	*s)
+{
+	if (!s)
+	{
+		free (s);
+		return (NULL);
+	}
+	return (s);
+}
 
 char	*ft_itoa(int n)
 {
@@ -18,35 +39,34 @@ char	*ft_itoa(int n)
 	int		i;
 	int		div;
 	int		res;
-	int		unit;
-
+	
 	i = 0;
 	div = n;
-	while (div > 1)
+	while (div > 1 || div < -1)
 	{
 		div = div / 10;
 		i++;
 	}
-	str = (char *)malloc((i) * sizeof(char));
-	//str[i] = 0;
-	div = n;
 	if (n < 0)
-	{
-		str[i] = '-';
-	}
-	while ( != 0)
+		i++;
+	str = (char *)malloc((i) * sizeof(char));
+	div = n;
+	while (i >= 0)
 	{
 		res = div;
 		div = div / 10;
-		unit = res - div * 10;
-		str[i] = (unit + 48);
-		printf ("%c\n", str[i]);
+		str[i] = (ft_units(res, div, n) + 48);
 		i--;
 	}
+	control_set(str);
+	if (n < 0)
+		str[0] = '-';
 	return (str);	
 }
 int	main()
 {
-	int	n = 82345;
-	printf ("%s\n", ft_itoa(n));
+	int	n = -10985678;
+	char *str = ft_itoa(n);
+	printf ("%s\n", str);
+	free (str);
 }
