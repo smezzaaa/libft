@@ -1,50 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/10 21:04:50 by smeza-ro          #+#    #+#             */
-/*   Updated: 2025/12/11 09:46:25 by smeza-ro         ###   ########.fr       */
+/*   Created: 2025/12/11 09:05:00 by smeza-ro          #+#    #+#             */
+/*   Updated: 2025/12/11 09:45:58 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
 	unsigned int	i;
-	unsigned int	len;
-	char			*news;
 
-	len = 0;
 	i = 0;
-	if (!s)
-		return (NULL);
-	while (s[len])
-		len++;
-	news = (char *)malloc(sizeof(char) * (len + 1));
-	if (!news)
-		return (NULL);
-	while (i < len)
+	while (s[i])
 	{
-		news[i] = f(i, s[i]);
+		f (i, &s[i]);
 		i++;
 	}
-	news [i] = 0;
-	return (news);
 }
+
 /* 
-char	f(unsigned int i, char c)
+void	f(unsigned int i, char *add)
 {
 	(void) i;
-	return (c - 32);
+	add = (add + 9);
 }
 int main()
 {
-	char str[] = "blob";
-	char	*s = ft_strmapi(str, f);
-	printf ("%s\n", s);
-	free(s);
+	char	str[] = "blob";
+	ft_striteri (str, f);
 } */

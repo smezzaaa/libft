@@ -6,23 +6,12 @@
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:40:40 by smeza-ro          #+#    #+#             */
-/*   Updated: 2025/12/10 21:02:23 by smeza-ro         ###   ########.fr       */
+/*   Updated: 2025/12/11 15:06:14 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_units(int res, int div, int n)
-{
-	int unit;
-
-	unit = 0;
-	if (n < 0)
-		unit = -res + div * 10;
-	else
-		unit = res - div * 10;
-	return (unit);
-}
 static char	*control_set(char	*s)
 {
 	if (!s)
@@ -33,40 +22,63 @@ static char	*control_set(char	*s)
 	return (s);
 }
 
-char	*ft_itoa(int n)
+static char	*conversion(long int n, char *str, long int len)
 {
-	char	*str;
-	int		i;
-	int		div;
-	int		res;
-	
-	i = 0;
+	long int	res;
+	long int	div;
+	long int	unit;
+
 	div = n;
-	while (div > 1 || div < -1)
-	{
-		div = div / 10;
-		i++;
-	}
-	if (n < 0)
-		i++;
-	str = (char *)malloc((i) * sizeof(char));
-	div = n;
-	while (i >= 0)
+	res = 0;
+	unit = 0;
+	while (div != 0)
 	{
 		res = div;
 		div = div / 10;
-		str[i] = (ft_units(res, div, n) + 48);
-		i--;
+		if (n < 0)
+			unit = -res + div * 10;
+		else
+			unit = res - div * 10;
+		str[len] = (unit + 48);
+		len--;
 	}
 	control_set(str);
 	if (n < 0)
 		str[0] = '-';
-	return (str);	
+	return (str);
 }
+
+char	*ft_itoa(int n)
+{
+	char			*str;
+	long int		count;
+	long int		div;
+	long int		x;
+
+	count = 0;
+	x = (long int)n;
+	div = x;
+	while (div != 0)
+	{
+		div = div / 10;
+		count++;
+	}
+	if (x < 0)
+		count++;
+	str = (char *)malloc((count + 1) * sizeof(char));
+	if (n == 0)
+	{
+		str[0] = '0';
+		return (&str[0]);
+	}
+	str = conversion (x, str, (count - 1));
+	return (str);
+}
+/* 
 int	main()
 {
-	int	n = -10985678;
+	long int	n = 0;
 	char *str = ft_itoa(n);
 	printf ("%s\n", str);
 	free (str);
-}
+} */
