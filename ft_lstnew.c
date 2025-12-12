@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/27 09:36:23 by smeza-ro          #+#    #+#             */
-/*   Updated: 2025/12/11 15:24:08 by smeza-ro         ###   ########.fr       */
+/*   Created: 2025/12/11 15:27:43 by smeza-ro          #+#    #+#             */
+/*   Updated: 2025/12/12 12:51:38 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+t_list	*ft_lstnew(void *content)
 {
-	char			*str;
-	unsigned int	i;
-
-	str = (char *)s;
-	i = 0;
-	while (i < n)
-	{
-		str[i] = '\0';
-		i++;
-	}
+	t_list	*lst;
+	
+	lst = (t_list *)malloc(sizeof(t_list));
+	if (!lst)
+		return (NULL);
+	lst->content = content;
+	lst->next = 0;
+	return (lst);
 }
-/* 
-int main()
+
+int main ()
 {
-	char	buff[1000] = "ciao";
-	printf ("buff occupato : %s\n", buff);
-	size_t n = 3;
-	ft_bzero(buff, n);
-	printf ("buff svuotato : %s\n", buff);
-}*/
+	void *content;
+	ft_lstnew(content);
+}
