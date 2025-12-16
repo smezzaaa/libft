@@ -1,38 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/02 18:41:19 by smeza-ro          #+#    #+#             */
-/*   Updated: 2025/12/16 19:52:45 by smeza-ro         ###   ########.fr       */
+/*   Created: 2025/12/16 17:32:28 by smeza-ro          #+#    #+#             */
+/*   Updated: 2025/12/16 17:39:36 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+int	ft_lstsize(t_list *lst)
 {
-	void		*mem;
+	int	size;
 
-	mem = malloc(nmemb * size);
-	if (!mem)
-		return (mem);
-	ft_bzero(mem, (nmemb * size));
-	return (mem);
+	
 }
 
-/* 
-int	main ()
+int main()
 {
-	int *ptr = (int *)ft_calloc (3, sizeof(ptr));
-	int *ptr1 = (int *)calloc (3, sizeof(ptr1));
-	if (ptr)
-	{
-		printf("[%d][%d][%d]\n", ptr[0], ptr[1], ptr[2]);
-		free (ptr);
-		printf("[%d][%d][%d]\n", ptr1[0], ptr1[1], ptr1[2]);
-		free (ptr1);
-	}
-} */
+	t_list	*lst;
+	
+}

@@ -6,7 +6,7 @@
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 10:16:14 by smeza-ro          #+#    #+#             */
-/*   Updated: 2025/11/27 15:21:52 by smeza-ro         ###   ########.fr       */
+/*   Updated: 2025/12/16 18:46:48 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,11 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	i = 0;
 	s = (char *)src;
 	d = (char *)dest;
-	if (dest == NULL || src == NULL)
-		return (NULL);
 	while (i < n)
 	{
 		d[i] = s[i];
 		i++;
 	}
-	d[i] = '\0';
 	return (d);
 }
 /* 
