@@ -6,7 +6,7 @@
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 18:41:19 by smeza-ro          #+#    #+#             */
-/*   Updated: 2025/12/17 09:56:28 by smeza-ro         ###   ########.fr       */
+/*   Updated: 2025/12/17 13:26:22 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,21 @@
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	unsigned char		*mem;
+	size_t				i;
+	size_t				tot;
 
-	mem = malloc(nmemb * size);
+	tot = nmemb * size;
+	if (tot/size != nmemb && (size > 0))
+		return (NULL);
+	mem = malloc(tot);
+	i = 0;
 	if (!mem)
-		return (mem);
-	ft_bzero(mem, (nmemb * size));
+		return (NULL);
+	while (i < tot)
+	{
+		mem[i] = 0;
+		i++;
+	}
 	return (mem);
 }
 

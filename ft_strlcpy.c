@@ -6,7 +6,7 @@
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 12:13:33 by smeza-ro          #+#    #+#             */
-/*   Updated: 2025/12/17 11:42:24 by smeza-ro         ###   ########.fr       */
+/*   Updated: 2025/12/17 15:36:29 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	unsigned int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < size - 1)
@@ -22,9 +22,10 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 		dst[i] = src [i];
 		i++;
 	}
-	dst[size] = '\0';
-	return (ft_strlen(src));
+	dst[i] = '\0';
+	return (ft_strlen(dst));
 }
+
 /*  
 int	main()
 {
