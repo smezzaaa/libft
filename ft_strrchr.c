@@ -6,7 +6,7 @@
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 12:22:07 by smeza-ro          #+#    #+#             */
-/*   Updated: 2025/11/30 23:07:47 by smeza-ro         ###   ########.fr       */
+/*   Updated: 2025/12/17 11:40:01 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	*ft_strrchr(const char *s, int c)
 	str = (char *)s;
 	i = 0;
 	j = -1;
+	if (c > UCHAR_MAX)
+		return(str);
 	while (str[i])
 	{
 		if (str[i] == c)
@@ -28,7 +30,7 @@ char	*ft_strrchr(const char *s, int c)
 		i++;
 	}
 	if (c == '\0')
-		j = i + 1;
+		j = i;
 	if (j == -1)
 		return (0);
 	return (str + j);

@@ -6,7 +6,7 @@
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/11 15:27:43 by smeza-ro          #+#    #+#             */
-/*   Updated: 2025/12/14 20:04:53 by smeza-ro         ###   ########.fr       */
+/*   Updated: 2025/12/17 09:46:27 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_list	*ft_lstnew(void *content)
 {
 	t_list	*lst;
-	
+
 	lst = (t_list *)malloc(sizeof(t_list));
 	if (!lst)
 		return (NULL);

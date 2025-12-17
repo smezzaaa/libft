@@ -6,7 +6,7 @@
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 18:41:19 by smeza-ro          #+#    #+#             */
-/*   Updated: 2025/12/16 19:52:45 by smeza-ro         ###   ########.fr       */
+/*   Updated: 2025/12/17 09:56:28 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	void		*mem;
+	unsigned char		*mem;
 
 	mem = malloc(nmemb * size);
 	if (!mem)

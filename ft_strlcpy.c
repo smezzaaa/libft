@@ -6,22 +6,11 @@
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 12:13:33 by smeza-ro          #+#    #+#             */
-/*   Updated: 2025/11/28 15:23:52 by smeza-ro         ###   ########.fr       */
+/*   Updated: 2025/12/17 11:42:24 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-// # include <bsd/string.h>
-
-static size_t	f_strlen(const char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
@@ -34,20 +23,30 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 		i++;
 	}
 	dst[size] = '\0';
-	return (f_strlen(src));
+	return (ft_strlen(src));
 }
-/* 
+/*  
 int	main()
 {
-	char	str[] = "bleah";
-	char	dest2[200];
-	char	dest3[200];
+	char	str[] = "";
+	// char	dest2[200];
+	// char	dest3[200];
+	char	*dest;
+	if (!(dest = (char *)malloc(sizeof(*dest) * 15)))
+		return (0);
+	memset(dest, 0, 15);
+	memset(dest, 'r', 6);
+	char	*dest2;
+	if (!(dest2 = (char *)malloc(sizeof(*dest2) * 15)))
+		return (0);
+	memset(dest, 'r', 15);
+	memset(dest2, 'r', 15);
 	
-	size_t n = 3;
-	printf("%zu\n", ft_strlcpy(dest2, str, n));
+	size_t n = 15;
+	printf("%zu\n", ft_strlcpy(dest, str, n));
+	printf("str: %s\n", str);
+	printf("dest: %s\n\n", dest);
+	printf("%zu\n", strlcpy(dest2, str, n));
 	printf("str: %s\n", str);
 	printf("dest: %s\n\n", dest2);
-	printf("%zu\n", strlcpy(dest3, str, n));
-	printf("str: %s\n", str);
-	printf("dest: %s\n\n", dest3);
 } */

@@ -6,7 +6,7 @@
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 17:32:28 by smeza-ro          #+#    #+#             */
-/*   Updated: 2025/12/16 17:39:36 by smeza-ro         ###   ########.fr       */
+/*   Updated: 2025/12/17 09:47:44 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,5 @@
 
 int	ft_lstsize(t_list *lst)
 {
-	int	size;
-
-	
-}
-
-int main()
-{
-	t_list	*lst;
-	
+	int	size;	
 }

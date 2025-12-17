@@ -6,7 +6,7 @@
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 19:45:50 by smeza-ro          #+#    #+#             */
-/*   Updated: 2025/12/04 15:58:24 by smeza-ro         ###   ########.fr       */
+/*   Updated: 2025/12/17 10:00:56 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@ char	*ft_strdup(const char *s)
 	char	*arr;
 
 	i = 0;
-	if ((ft_strlen(s) + 1) > __SIZE_MAX__)
+	arr = (char *)malloc(ft_strlen(s) + 1);
+	if (!arr)
 		return (NULL);
-	arr = (char *)malloc (ft_strlen(s) + 1);
 	while (s[i])
 	{
 		arr[i] = s[i];
 		i++;
 	}
+	arr[i] = 0;
 	return (arr);
 }
 /* 
