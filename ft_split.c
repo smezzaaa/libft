@@ -6,7 +6,7 @@
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 16:22:02 by smeza-ro          #+#    #+#             */
-/*   Updated: 2025/12/09 19:10:44 by smeza-ro         ###   ########.fr       */
+/*   Updated: 2025/12/17 19:47:20 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,7 @@ static size_t	str_counter(char const *s, char c)
 static char	*free_word(char	*s)
 {
 	if (!s)
-	{
-		free(s);
 		return (NULL);
-	}
 	return (s);
 }
 
@@ -107,10 +104,10 @@ char	**ft_split(char const *s, char c)
 	}
 	return (arr);
 }
-/* 
+
 int main ()
 {
-	char str[] = "---bip--------";
+	char str[] = "---bip--fff------";
 	char del = '-';
 	char **tokens = ft_split(str, del);
 	int i = 0;
@@ -129,7 +126,7 @@ int main ()
 			j++;
 		}
 		j = 0;
+		free (tokens);
 		a++;
 	}
-	free (tokens);
-} */
+}

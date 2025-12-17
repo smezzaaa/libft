@@ -6,7 +6,7 @@
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 12:02:34 by smeza-ro          #+#    #+#             */
-/*   Updated: 2025/12/12 15:16:18 by smeza-ro         ###   ########.fr       */
+/*   Updated: 2025/12/17 19:30:37 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,26 +36,28 @@ char	*ft_strtrim(char const *s1, char const *set)
 	sx = 0;
 	dx = ft_strlen(s1);
 	j = -1;
+	if (!s1 || !set)
+		return (NULL);
 	while (s1[++j] && control_set(s1[j], set) != 0)
 		sx++;
 	j = ft_strlen(s1);
 	while (s1[--j] && control_set(s1[j], set) != 0)
 		dx--;
-	if (dx > sx)
-		tstr = malloc (dx - sx);
-	else
-		return (NULL);
+	if (dx < sx)
+		dx = sx;
+	tstr = malloc (sizeof(char) * (dx - sx + 1));
 	if (!tstr)
 		return (NULL);
 	j = 0;
 	while (sx < dx)
 		tstr[j++] = s1[sx++];
+	tstr[j] = 0;
 	return (tstr);
 }
 /*  
 int main()
 {
-	char str[] = "popcorn";
-	char set[] = "c";
+	char str[] = "bbbbooooi";
+	char set[] = "bi";
 	printf ("%s\n", ft_strtrim(str, set));
 } */

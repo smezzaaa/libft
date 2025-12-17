@@ -6,7 +6,7 @@
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 12:13:33 by smeza-ro          #+#    #+#             */
-/*   Updated: 2025/12/17 15:36:29 by smeza-ro         ###   ########.fr       */
+/*   Updated: 2025/12/17 16:25:04 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,31 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	size_t	i;
 
 	i = 0;
-	while (i < size - 1)
+	if (!dst || !src)
+		return (0);
+	if (size == 0)
+		return (ft_strlen (src));
+	while (i < size - 1 && src[i])
 	{
 		dst[i] = src [i];
 		i++;
 	}
-	dst[i] = '\0';
-	return (ft_strlen(dst));
+	if (i < size)
+		dst[i] = '\0';
+	while (src[i])
+		i++;
+	return (i);
 }
-
 /*  
 int	main()
 {
-	char	str[] = "";
-	// char	dest2[200];
-	// char	dest3[200];
-	char	*dest;
-	if (!(dest = (char *)malloc(sizeof(*dest) * 15)))
-		return (0);
-	memset(dest, 0, 15);
-	memset(dest, 'r', 6);
-	char	*dest2;
-	if (!(dest2 = (char *)malloc(sizeof(*dest2) * 15)))
-		return (0);
-	memset(dest, 'r', 15);
-	memset(dest2, 'r', 15);
+	char	str[] = "coucou";
+	char	dest2[10];
+	memset(dest2, 'A', 10);
+	char	dest[10];
+	memset(dest, 'A', 10);
 	
-	size_t n = 15;
+	size_t n = -1;
 	printf("%zu\n", ft_strlcpy(dest, str, n));
 	printf("str: %s\n", str);
 	printf("dest: %s\n\n", dest);
