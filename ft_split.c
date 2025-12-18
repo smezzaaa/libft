@@ -6,7 +6,7 @@
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 16:22:02 by smeza-ro          #+#    #+#             */
-/*   Updated: 2025/12/17 19:47:20 by smeza-ro         ###   ########.fr       */
+/*   Updated: 2025/12/18 20:25:04 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 static size_t	tok_len(char const *s, char c)
 {
-	static int	i;
-	size_t		len;
+	int		i;
+	size_t	len;
 
+	i = 0;
 	len = 0;
 	while (s[i] == c)
 		i++;
@@ -47,36 +48,42 @@ static size_t	str_counter(char const *s, char c)
 	return (count);
 }
 
-static char	*free_word(char	*s)
+static char	**free_mat(char	**arr)
 {
-	if (!s)
-		return (NULL);
-	return (s);
+	int	i;
+
+	i = 0;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+	return (NULL);
 }
 
-static char	*ft_cpy(char *dst, const char *str, size_t len, char c)
+static char	*ft_cpy(const char *str, size_t len, char c)
 {
-	static int	i;
+	size_t		i;
+	char		*dst;
 	size_t		j;
 
+	dst = (char *)malloc((len + 1) * sizeof(char));
+	if (!dst)
+		return (NULL);
+	i = 0;
 	j = 0;
 	while (str[i])
 	{
 		if (str[i] != c)
 		{
 			while (j < len)
-			{
-				dst[j] = str[i];
-				j++;
-				i++;
-			}
+				dst[j++] = str[i++];
+			dst[j] = '\0';
 			return (dst);
 		}
-		else
-		{
-			while (str[i] == c)
-				i++;
-		}
+		while (str[i] == c)
+			i++;
 	}
 	return (dst);
 }
@@ -84,49 +91,52 @@ static char	*ft_cpy(char *dst, const char *str, size_t len, char c)
 char	**ft_split(char const *s, char c)
 {
 	size_t		i;
+	size_t		j;
 	char		**arr;
-	size_t		wrd_len;
 
-	i = 0;
+	i = -1;
+	j = 0;
 	if (s == NULL)
 		return (NULL);
-	arr = (char **)malloc(sizeof(char *) * (str_counter(s, c)));
+	arr = (char **)malloc(sizeof(char *) * (str_counter(s, c) + 1));
 	if (arr == NULL)
 		return (NULL);
-	while (i < str_counter(s, c))
+	while (s[++i])
 	{
-		wrd_len = tok_len(s, c);
-		arr[i] = (char *)malloc(wrd_len * sizeof(char));
-		arr[i] = ft_cpy(arr[i], s, wrd_len, c);
-		if (free_word (arr[i]) == NULL)
-			return (NULL);
-		i++;
+		if (s[i] != c)
+		{
+			arr[j] = ft_cpy(&s[i], tok_len(&s[i], c), c);
+			if (arr[j] == NULL)
+				return (free_mat(arr));
+			i += tok_len(&s[i], c) - 1;
+			j++;
+		}
 	}
+	arr[j] = NULL;
 	return (arr);
 }
-
+/* 
 int main ()
 {
-	char str[] = "---bip--fff------";
-	char del = '-';
+	char str[] = "  tripouille  42  ";
+	char del = ' ';
 	char **tokens = ft_split(str, del);
 	int i = 0;
 	while (tokens[i])
 	{
-		printf("%s\n", tokens[i]);
+		printf("token[%d] = %s, len = %zu\n", i, tokens[i], sizeof(tokens[i]));
 		i++;
 	}
+	
 	int a = 0;
 	int j = 0;
+
 	while (tokens[a])
 	{
-		while (tokens[a][j])
-		{
-			free (tokens[j]);
-			j++;
-		}
-		j = 0;
-		free (tokens);
+		free (tokens[a]);
 		a++;
 	}
-}
+	j = 0;
+	free (tokens);
+	a++;
+} */

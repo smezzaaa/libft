@@ -6,7 +6,7 @@
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 10:41:17 by smeza-ro          #+#    #+#             */
-/*   Updated: 2025/12/17 19:21:13 by smeza-ro         ###   ########.fr       */
+/*   Updated: 2025/12/18 20:02:06 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!s)
 		return (NULL);
 	if (start >= ft_strlen(s))
-		return (ft_calloc (1,1));
+		return (ft_calloc (1, 1));
 	if ((start + len) > ft_strlen(s))
 		sublen = ft_strlen(s) - start;
 	else
 		sublen = len;
 	substr = malloc(sublen + 1);
 	if (!substr)
-		return(NULL);
+		return (NULL);
 	while (s[start] && j < sublen)
 	{
 		substr[j] = s[start];

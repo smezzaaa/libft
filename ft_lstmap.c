@@ -1,23 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/14 17:33:17 by smeza-ro          #+#    #+#             */
-/*   Updated: 2025/12/18 10:38:01 by smeza-ro         ###   ########.fr       */
+/*   Created: 2025/12/18 14:35:34 by smeza-ro          #+#    #+#             */
+/*   Updated: 2025/12/18 19:55:04 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	new->next = *lst;
-	*lst = new;
+	t_list	*tmp;
+	t_list	*head;
+
+	if (!lst || !f || !del)
+		return (NULL);
+	head = NULL;
+	while (lst != NULL)
+	{
+		tmp = ft_lstnew(f(lst->content));
+		if (!tmp)
+		{
+			ft_lstclear(&head, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&head, tmp);
+		lst = lst->next;
+	}
+	return (head);
 }
 /* 
+void	del(void *content)
+{
+	free(content);
+}
+
+void	*f(void *content)
+{
+	char	*cpy;
+	int		i;
+
+	cpy = ft_strdup((char *)content);
+	i = 0;
+	while(cpy[i])
+	{
+		cpy[i] = ft_tolower((unsigned char)cpy[i]);
+		i++;
+	}
+	return ((void *)cpy);
+}
+
 void	printlst(t_list *ptr)
 {
 	while (ptr != NULL)
@@ -41,17 +77,17 @@ int main()
 	nodo2 = malloc(sizeof(t_list));
 	nodo3 = malloc(sizeof(t_list));
 
-	nodo1->content = "bop";
-	nodo2->content = "bip";
-	nodo3->content = "bup";
+	nodo1->content = "BOP";
+	nodo2->content = "BIP";
+	nodo3->content = "BUP";
 
 	nodo1->next = nodo2;
-	nodo2->next = NULL;
+	nodo2->next = nodo3;
+	nodo3->next = NULL;
 	head = nodo1;
 
 	printlst (head);
-	ft_lstadd_front(&head, nodo3);
-	printlst (head);
+	printlst (ft_lstmap(head, f, del));
 	free(nodo1);
 	free(nodo2);
 	free(nodo3);

@@ -6,7 +6,7 @@
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:40:40 by smeza-ro          #+#    #+#             */
-/*   Updated: 2025/12/17 20:26:10 by smeza-ro         ###   ########.fr       */
+/*   Updated: 2025/12/18 20:02:36 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	*fzero(void)
 	if (!s)
 		return (NULL);
 	s[0] = '0';
-	s[2] = 0;
+	s[1] = 0;
 	return (s);
 }
 
@@ -29,7 +29,7 @@ static char	*conversion(long int n, char *str, long int len)
 	long int	res;
 	long int	div;
 	long int	unit;
-	
+
 	div = n;
 	res = 0;
 	unit = 0;
@@ -38,14 +38,14 @@ static char	*conversion(long int n, char *str, long int len)
 		res = div;
 		div = div / 10;
 		if (n < 0)
-		unit = -res + div * 10;
+			unit = -res + div * 10;
 		else
-		unit = res - div * 10;
+			unit = res - div * 10;
 		str[len] = (unit + 48);
 		len--;
 	}
 	if (n < 0)
-	str[0] = '-';
+		str[0] = '-';
 	return (str);
 }
 
@@ -55,7 +55,7 @@ char	*ft_itoa(int n)
 	long int		count;
 	long int		div;
 	long int		x;
-	
+
 	if (n == 0)
 		return (fzero());
 	count = 0;
@@ -71,13 +71,13 @@ char	*ft_itoa(int n)
 	str = (char *)malloc((count + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
+	str[count] = '\0';
 	str = conversion (x, str, (count - 1));
 	return (str);
 }
-/* 
-int	main()
+/* int	main()
 {
-	long int	n = -1;
+	long int	n = 100;
 	char *str = ft_itoa(n);
 	printf ("%s\n", str);
 	free (str);

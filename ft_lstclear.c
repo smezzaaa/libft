@@ -1,29 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/14 17:33:17 by smeza-ro          #+#    #+#             */
-/*   Updated: 2025/12/18 10:38:01 by smeza-ro         ###   ########.fr       */
+/*   Created: 2025/12/18 12:00:08 by smeza-ro          #+#    #+#             */
+/*   Updated: 2025/12/18 20:04:20 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	new->next = *lst;
-	*lst = new;
+	t_list	*temp;
+
+	if (!lst || !del)
+		return ;
+	while (*lst != NULL)
+	{
+		temp = (*lst)->next;
+		del ((*lst)->content);
+		free(*lst);
+		*lst = temp;
+	}
 }
 /* 
+void	del(void *content)
+{
+   free(content);
+}
+
 void	printlst(t_list *ptr)
 {
 	while (ptr != NULL)
 	{
 		if (ptr->next != NULL)
-			printf ("|%s|\n", (char *)ptr->content);
+			printf ("|%s|->", (char *)ptr->content);
 		else
 			printf ("|%s|\n", (char *)ptr->content);
 		ptr = ptr->next;
@@ -32,27 +46,14 @@ void	printlst(t_list *ptr)
 
 int main()
 {
-	t_list	*head;
-	t_list	*nodo1 = NULL;
-	t_list	*nodo2 = NULL;
-	t_list	*nodo3 = NULL;
+	t_list *testa = NULL;
 
-	nodo1 = malloc(sizeof(t_list));
-	nodo2 = malloc(sizeof(t_list));
-	nodo3 = malloc(sizeof(t_list));
+	ft_lstadd_back(&testa, ft_lstnew(ft_strdup("Hello")));
+	ft_lstadd_back(&testa, ft_lstnew(ft_strdup("Hello2")));
+	ft_lstadd_back(&testa, ft_lstnew(ft_strdup("Hello3")));
 
-	nodo1->content = "bop";
-	nodo2->content = "bip";
-	nodo3->content = "bup";
-
-	nodo1->next = nodo2;
-	nodo2->next = NULL;
-	head = nodo1;
-
-	printlst (head);
-	ft_lstadd_front(&head, nodo3);
-	printlst (head);
-	free(nodo1);
-	free(nodo2);
-	free(nodo3);
-} */
+	printlst (testa);
+	ft_lstclear(&testa, del);
+	printlst (testa);
+	return (0);
+}  */

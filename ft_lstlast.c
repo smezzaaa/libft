@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/14 17:33:17 by smeza-ro          #+#    #+#             */
-/*   Updated: 2025/12/18 10:38:01 by smeza-ro         ###   ########.fr       */
+/*   Created: 2025/12/18 10:36:56 by smeza-ro          #+#    #+#             */
+/*   Updated: 2025/12/18 20:03:28 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+t_list	*ft_lstlast(t_list *lst)
 {
-	new->next = *lst;
-	*lst = new;
+	while (lst != NULL)
+	{
+		if (lst->next == NULL)
+			return (lst);
+		lst = lst->next;
+	}
+	return (NULL);
 }
 /* 
 void	printlst(t_list *ptr)
@@ -45,13 +50,13 @@ int main()
 	nodo2->content = "bip";
 	nodo3->content = "bup";
 
-	nodo1->next = nodo2;
+	nodo1->next = nodo3;
 	nodo2->next = NULL;
+	nodo3->next = nodo2;
 	head = nodo1;
 
 	printlst (head);
-	ft_lstadd_front(&head, nodo3);
-	printlst (head);
+	printlst (ft_lstlast(head));
 	free(nodo1);
 	free(nodo2);
 	free(nodo3);

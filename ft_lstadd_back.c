@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/14 17:33:17 by smeza-ro          #+#    #+#             */
-/*   Updated: 2025/12/18 10:38:01 by smeza-ro         ###   ########.fr       */
+/*   Created: 2025/12/18 10:43:26 by smeza-ro          #+#    #+#             */
+/*   Updated: 2025/12/18 19:44:12 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	new->next = *lst;
-	*lst = new;
+	t_list	*temp;
+
+	if (lst)
+	{
+		if (*lst == NULL)
+			*lst = new;
+		else
+		{
+			temp = ft_lstlast(*(lst));
+			temp->next = new;
+		}
+	}
 }
 /* 
 void	printlst(t_list *ptr)
@@ -50,7 +60,7 @@ int main()
 	head = nodo1;
 
 	printlst (head);
-	ft_lstadd_front(&head, nodo3);
+	ft_lstadd_back(&head, nodo3);
 	printlst (head);
 	free(nodo1);
 	free(nodo2);

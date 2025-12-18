@@ -6,7 +6,7 @@
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 12:22:07 by smeza-ro          #+#    #+#             */
-/*   Updated: 2025/12/17 11:40:01 by smeza-ro         ###   ########.fr       */
+/*   Updated: 2025/12/18 20:00:44 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strrchr(const char *s, int c)
 	i = 0;
 	j = -1;
 	if (c > UCHAR_MAX)
-		return(str);
+		return (str);
 	while (str[i])
 	{
 		if (str[i] == c)

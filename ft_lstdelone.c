@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/14 17:33:17 by smeza-ro          #+#    #+#             */
-/*   Updated: 2025/12/18 10:38:01 by smeza-ro         ###   ########.fr       */
+/*   Created: 2025/12/18 11:06:11 by smeza-ro          #+#    #+#             */
+/*   Updated: 2025/12/18 20:03:51 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	new->next = *lst;
-	*lst = new;
+	if (!lst || !del)
+		return ;
+	del (lst->content);
+	free (lst);
 }
 /* 
+void	del(void *content)
+{
+	free(content);
+}
+
 void	printlst(t_list *ptr)
 {
 	while (ptr != NULL)
@@ -32,27 +39,15 @@ void	printlst(t_list *ptr)
 
 int main()
 {
-	t_list	*head;
 	t_list	*nodo1 = NULL;
-	t_list	*nodo2 = NULL;
-	t_list	*nodo3 = NULL;
 
 	nodo1 = malloc(sizeof(t_list));
-	nodo2 = malloc(sizeof(t_list));
-	nodo3 = malloc(sizeof(t_list));
 
-	nodo1->content = "bop";
-	nodo2->content = "bip";
-	nodo3->content = "bup";
+	nodo1->content = ft_strdup("bop");
 
-	nodo1->next = nodo2;
-	nodo2->next = NULL;
-	head = nodo1;
+	nodo1->next = NULL;
 
-	printlst (head);
-	ft_lstadd_front(&head, nodo3);
-	printlst (head);
-	free(nodo1);
-	free(nodo2);
-	free(nodo3);
+	printlst (nodo1);
+	ft_lstdelone(nodo1, del);
+	printlst (nodo1);
 } */
