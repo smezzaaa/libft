@@ -6,7 +6,7 @@
 /*   By: smeza-ro <smeza-ro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 19:48:18 by smeza-ro          #+#    #+#             */
-/*   Updated: 2025/12/18 19:59:59 by smeza-ro         ###   ########.fr       */
+/*   Updated: 2025/12/19 13:04:51 by smeza-ro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 
 	i = 0;
 	j = 0;
-	if (!big[i] && !little[i])
+	if (!little[i])
 		return ((char *)big);
 	if (len != 0)
 	{
